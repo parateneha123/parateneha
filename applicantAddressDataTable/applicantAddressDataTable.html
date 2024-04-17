@@ -1,0 +1,43 @@
+<template>
+    <lightning-card>
+
+        <header class="slds-modal__header">
+            <h2 class="slds-text-heading_medium slds-hyphenate">Applicant DataTable</h2>
+        </header>
+
+        <div class="slds-var-p-around_medium lgc-bg" >
+          
+            <lightning-input data-formfield="applicantID" type="text" placeholder="Enter Applicant ID" onkeypress={handleEnter} ></lightning-input> <br /> 
+            
+            <template if:true={showSpinnerFlag}>
+                <div class="exampleHolder">
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div>
+            </template>   
+
+            <template if:true={showAddressTableFlag} >        
+              
+                <div class="myTable">
+                <!-- sldsValidatorIgnoreNextLine -->
+                <!-- sldsValidatorIgnoreNextLine -->
+                <lightning-datatable
+                        class="myCss"
+                        key-field="Id"
+                        data={addressList}
+                        columns={columns}    
+                        draft-values={draftValues} 
+                        onrowselection={selectedRecordsHandler}                     
+                        onsave={saveHandler}   > 
+                </lightning-datatable>
+                </div>
+            </template>
+
+        </div>
+
+        
+        <div slot="footer">
+            <lightning-button variant="destructive" label="Delete Selected Address" onclick={deleteSelectedAddressHandler}></lightning-button>        
+        </div>
+
+    </lightning-card>
+</template>
