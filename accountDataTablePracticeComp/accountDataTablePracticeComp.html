@@ -1,0 +1,42 @@
+<template>
+    <lightning-card>
+        <div>
+            <h1 slot="title"> Account Delete Data Table </h1>
+        </div>
+
+        <div class="slds-var-p-around_medium lgc-bg">
+            <lightning-button variant="destructive" icon-name="utility:delete" label="Delete Selected Records" onclick={deleteSelectedRecordsHandler}>  
+            </lightning-button> <br/>
+
+            <lightning-combobox
+                name="accType"
+                label="Account Status"
+                placeholder="Select Account Type"
+                options={options}
+                onchange={handleAccountTypeChange} ></lightning-combobox> <br/>
+
+
+                <template if:true={showSpinnerFlag}>
+                    <div class="exampleHolder">
+                        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                    </div>
+                </template>
+
+                
+                 <!--DATA TABLE START-->
+                                               
+                 <lightning-datatable class="table-test"            
+                 key-field="Id"
+                 data={accList}
+                 columns={columns}    
+                 draft-values={draftValues} 
+                 onrowselection={selectedRecordsHandler}                     
+                 onsave={saveHandler} >
+
+             </lightning-datatable>
+        
+         <!--DATA TABLE END-->
+
+        </div>
+    </lightning-card>
+</template>
